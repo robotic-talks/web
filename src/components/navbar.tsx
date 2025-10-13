@@ -1,5 +1,8 @@
+"use client";
+
 import * as React from "react";
 import ThemeController from "./themeController";
+// import { auth } from "@/lib/firebaseConfig";
 
 export type NavbarProps = {
   title: string;
@@ -7,6 +10,12 @@ export type NavbarProps = {
 };
 
 export default function Navbar({ imageUrl, title }: NavbarProps) {
+  //   React.useEffect(() => {
+  //     auth.onAuthStateChanged((user) => {
+  //       console.log(user);
+  //     });
+  //   }, []);
+
   return (
     <div className="navbar shadow-none z-50 top-0 fixed">
       <div className="px-3 py-2 rounded lg:rounded-lg shadow-sm w-full flex backdrop-blur-2xl bg-base-100/45">
@@ -23,7 +32,7 @@ export default function Navbar({ imageUrl, title }: NavbarProps) {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div className="avatar rounded-full border-2 border-base-300/30">
                 <img alt="Tailwind CSS Navbar component" src={imageUrl} />
               </div>
             </div>

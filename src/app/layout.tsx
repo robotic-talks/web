@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { randomInt } from "crypto";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,11 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen min-h-screen overflow-x-hidden overflow-y-scroll font-sans`}
       >
         <Navbar
           title="Robotics Talks"
-          imageUrl="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capuchin-monkey-square-1.jpg.optimal.jpg"
+          imageUrl={`https://robohash.org/${randomInt(100)}?set=set3`}
         />
         {children}
       </body>

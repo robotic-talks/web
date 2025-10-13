@@ -1,11 +1,12 @@
 import Hero from "@/components/hero";
 import Image from "next/image";
+import React from "react";
+import { auth } from "@/lib/firebaseConfig";
 
 export default function Home() {
   return (
-    <div className="w-screen min-h-screen">
+    <>
       <Hero />
-      <div className="py-12">Hi</div>
-    </div>
+    </>
   );
 }
