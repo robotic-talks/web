@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <Navbar
+          title="Robotics Talks"
+          imageUrl="https://www.rainforest-alliance.org/wp-content/uploads/2021/06/capuchin-monkey-square-1.jpg.optimal.jpg"
+        />
         {children}
       </body>
     </html>
