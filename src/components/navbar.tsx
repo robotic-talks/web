@@ -2,22 +2,25 @@
 
 import * as React from "react";
 import ThemeController from "./themeController";
-// import { auth } from "@/lib/firebaseConfig";
+import { auth } from "@/lib/firebaseConfig";
+import { signOut, User } from "firebase/auth";
 
 export type NavbarProps = {
   title: string;
-  imageUrl: string;
 };
 
-export default function Navbar({ imageUrl, title }: NavbarProps) {
-  //   React.useEffect(() => {
-  //     auth.onAuthStateChanged((user) => {
-  //       console.log(user);
-  //     });
-  //   }, []);
+export default function Navbar({ title }: NavbarProps) {
+  const [user, setUser] = React.useState<User | null>(null);
+
+  React.useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
+      setUser(user);
+    });
+  }, []);
 
   return (
-    <div className="navbar shadow-none z-50 top-0 fixed">
+    <div className="navbar shadow-none z-[999] top-0 fixed">
       <div className="px-3 py-2 rounded lg:rounded-lg shadow-sm w-full flex backdrop-blur-2xl bg-base-100/45">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl rounded hover:bg-base-100/10 border-none shadow-none">
@@ -33,7 +36,17 @@ export default function Navbar({ imageUrl, title }: NavbarProps) {
               className="btn btn-ghost btn-circle avatar"
             >
               <div className="avatar rounded-full border-2 border-base-300/30">
-                <img alt="Tailwind CSS Navbar component" src={imageUrl} />
+                <img
+                  alt={
+                    `Image of ${auth.currentUser?.displayName}` ||
+                    "Your profile"
+                  }
+                  src={
+                    user
+                      ? user?.photoURL!
+                      : "https://robohash.org/moonlab-iiserb.png?set=1"
+                  }
+                />
               </div>
             </div>
             <ul
@@ -50,7 +63,18 @@ export default function Navbar({ imageUrl, title }: NavbarProps) {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (auth.currentUser) {
+                      signOut(auth).then(() => {
+                        alert("Signed out user");
+                      });
+                    }
+                  }}
+                >
+                  {auth.currentUser ? "Logout" : "Login"}
+                </a>
               </li>
             </ul>
           </div>

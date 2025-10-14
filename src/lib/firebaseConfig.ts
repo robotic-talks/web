@@ -1,12 +1,14 @@
+"use client";
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { config as dotenvConfig } from "dotenv";
 
-console.log(process.env.FIREBASE_API_KEY);
+console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: "robotic-talks.firebaseapp.com",
   projectId: "robotic-talks",
   storageBucket: "robotic-talks.firebasestorage.app",
