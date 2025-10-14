@@ -5,6 +5,7 @@ import Navbar from "@/components/navbar";
 import { randomInt } from "crypto";
 import { auth } from "@/lib/firebase";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +38,8 @@ export default function RootLayout({
         <div className="z-50">
           <Toaster position="bottom-center" reverseOrder={false} />
         </div>
+
+        <Footer />
       </body>
     </html>
   );

@@ -4,6 +4,8 @@ import { auth } from "@/lib/firebase";
 import GoogleLoginButton from "./googleLogin";
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
+import { BsCalendarEvent, BsSearch } from "react-icons/bs";
+import Link from "next/link";
 
 export default function Hero() {
   const [user, setUser] = useState<User | null>(null);
@@ -20,11 +22,21 @@ export default function Hero() {
     >
       <div className="hero-overlay"></div>
       <div className="hero-content text-neutral-content text-center">
-        <div className="max-w-md flex flex-col items-center">
+        <div className="max-w-md flex flex-col items-center justify-center">
           {user ? (
-            <h1 className="mb-5 text-5xl font-bold">
-              Hi, {user.displayName?.split(" ")[0]}!
-            </h1>
+            <div className="flex flex-col">
+              <h1 className="mb-5 text-5xl font-bold">
+                Hi, {user.displayName?.split(" ")[0]}!
+              </h1>
+              <p className="mb-5">Ready for more robotics?</p>
+              <Link
+                className="btn btn-outline backdrop-blur-2xl rounded lg:rounded-lg flex gap-3 items-center"
+                href={"/talks"}
+              >
+                <BsCalendarEvent size={18} />
+                <span>Go to Talks</span>
+              </Link>
+            </div>
           ) : (
             <>
               <h1 className="mb-5 text-5xl font-bold">Hello, World!</h1>

@@ -11,7 +11,7 @@ const GoogleLoginButton = () => {
 
   return (
     <button
-      className="btn rounded flex items-center justify-center gap-2"
+      className="btn rounded flex items-center gap-2"
       onClick={(e) => {
         e.preventDefault();
         toast.promise(signInWithPopup(auth, provider), {
