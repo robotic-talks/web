@@ -3,7 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import { randomInt } from "crypto";
-import { auth } from "@/lib/firebaseConfig";
+import { auth } from "@/lib/firebase";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +33,10 @@ export default function RootLayout({
       >
         <Navbar title="Robotics Talks" />
         {children}
+
+        <div className="z-50">
+          <Toaster position="bottom-center" reverseOrder={false} />
+        </div>
       </body>
     </html>
   );

@@ -2,8 +2,14 @@
 
 import * as React from "react";
 import ThemeController from "./themeController";
-import { auth } from "@/lib/firebaseConfig";
-import { signOut, User } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  User,
+} from "firebase/auth";
+import toast from "react-hot-toast";
 
 export type NavbarProps = {
   title: string;
@@ -11,6 +17,7 @@ export type NavbarProps = {
 
 export default function Navbar({ title }: NavbarProps) {
   const [user, setUser] = React.useState<User | null>(null);
+  const provider = new GoogleAuthProvider();
 
   React.useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -67,9 +74,21 @@ export default function Navbar({ title }: NavbarProps) {
                   onClick={(e) => {
                     e.preventDefault();
                     if (auth.currentUser) {
-                      signOut(auth).then(() => {
-                        alert("Signed out user");
+                      toast.promise(signOut(auth), {
+                        loading: "Logging out...",
+                        success: <b>Logged out!</b>,
+                        error: <b>Error logging out.</b>,
                       });
+                    } else {
+                      toast.promise(signInWithPopup(auth, provider), {
+                        loading: "Logging in with Google...",
+                        success: (auth) =>
+                          `Logged in as ${auth.user.displayName}`,
+                        error: "Error logging in.",
+                      });
+                      //   signInWithPopup(auth, provider).then((auth) => {
+                      //     toast.success(`Welcome ${auth.user.displayName}!`);
+                      //   });
                     }
                   }}
                 >
