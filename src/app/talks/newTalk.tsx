@@ -10,6 +10,7 @@ import { firestore } from "@/lib/firebase";
 const NewTalkModal = () => {
   const [title, setTitle] = React.useState("");
   const [link, setLink] = React.useState("");
+  const [slidesLink, setSlidesLink] = React.useState(""); // new field
   const [datetime, setDatetime] = React.useState<Date | null>(null);
   const [description, setDescription] = React.useState("");
   const [speakersText, setSpeakersText] = React.useState("");
@@ -33,7 +34,8 @@ const NewTalkModal = () => {
 
     const data = {
       title,
-      link,
+      watchUrl: link,
+      slidesUrl: slidesLink || null, // store null if empty
       startsAt: Timestamp.fromDate(datetime),
       description,
       speakers,
@@ -49,6 +51,7 @@ const NewTalkModal = () => {
       // reset fields
       setTitle("");
       setLink("");
+      setSlidesLink("");
       setDatetime(null);
       setDescription("");
       setSpeakersText("");
@@ -58,7 +61,6 @@ const NewTalkModal = () => {
     }
   };
 
-  // Helper to format Date for datetime-local input
   const formatLocalDatetime = (date: Date) => {
     const pad = (n: number) => n.toString().padStart(2, "0");
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(
@@ -91,6 +93,16 @@ const NewTalkModal = () => {
               value={link}
               onChange={(e) => setLink(e.target.value)}
               required
+            />
+          </label>
+
+          <label className="input w-full">
+            <MdLink />
+            <input
+              type="url"
+              placeholder="Link to slides (optional)"
+              value={slidesLink}
+              onChange={(e) => setSlidesLink(e.target.value)}
             />
           </label>
 

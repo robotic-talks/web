@@ -1,13 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import * as React from "react";
 import {
   BsCalendar,
+  BsCalendarPlus,
   BsClock,
   BsPerson,
   BsTextLeft,
   BsYoutube,
 } from "react-icons/bs";
+import { MdSlideshow } from "react-icons/md";
+import { RiSlideshow2Fill } from "react-icons/ri";
 
 type TalkCardProps = {
   title: string;
@@ -15,6 +19,7 @@ type TalkCardProps = {
   speakers: string[];
   scheduledTime: Date;
   watchUrl: string;
+  slidesUrl: string;
 };
 
 const TalkCard = ({
@@ -23,6 +28,7 @@ const TalkCard = ({
   speakers,
   title,
   watchUrl,
+  slidesUrl,
 }: TalkCardProps) => {
   return (
     <div className="flex flex-col gap-2 rounded shadow-sm p-4 border-b-2 border-b-primary/30 h-full">
@@ -55,16 +61,23 @@ const TalkCard = ({
         </div>
         <p className="flex-1 text-justify">{description}</p>
       </div>
-      <div className="flex gap-3 justify-center lg:mt-3">
-        <a
+      <hr className="opacity-10 my-1 hidden lg:block" />
+
+      <div className="join self-end lg:self-center rounded lg:rounded-lg overflow-hidden">
+        <Link
           href={watchUrl}
-          className="btn btn-outline rounded flex items-center"
+          className="btn join-item hover:bg-red-500 flex items-center gap-2"
         >
-          <span className="text-red-500">
-            <BsYoutube size={24} />
-          </span>
-          <span>Watch on YouTube</span>
-        </a>
+          <BsYoutube size={24} />
+          <div className="hidden lg:block">Watch</div>
+        </Link>
+        <Link
+          href={slidesUrl}
+          className="btn join-item hover:btn-accent flex items-center gap-2"
+        >
+          <RiSlideshow2Fill size={24} />{" "}
+          <div className="hidden lg:block">Slides</div>
+        </Link>
       </div>
     </div>
   );
