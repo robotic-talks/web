@@ -59,7 +59,7 @@ export default function Navbar({ title }: NavbarProps) {
 
   return (
     <div className="navbar shadow-none z-[999] top-0 fixed">
-      <div className="px-3 py-2 rounded lg:rounded-lg shadow-sm w-full flex backdrop-blur-2xl bg-base-100/20">
+      <div className="px-3 py-2 rounded lg:rounded-lg shadow-sm w-full flex backdrop-blur-2xl bg-base-100/40">
         <div className="flex-1">
           <Link
             href={"/"}

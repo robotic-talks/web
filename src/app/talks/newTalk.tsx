@@ -1,16 +1,17 @@
 "use client";
 
 import * as React from "react";
-import { BsCalendar, BsCheck, BsX } from "react-icons/bs";
+import { BsCalendar, BsCheck, BsX, BsYoutube } from "react-icons/bs";
 import { MdLink, MdTitle, MdPeopleAlt } from "react-icons/md";
 import toast from "react-hot-toast";
 import { addDoc, collection, Timestamp } from "firebase/firestore";
 import { firestore } from "@/lib/firebase";
+import { FaBookmark } from "react-icons/fa6";
 
 const NewTalkModal = () => {
   const [title, setTitle] = React.useState("");
   const [link, setLink] = React.useState("");
-  const [slidesLink, setSlidesLink] = React.useState(""); // new field
+  const [supplementaryLink, setSupplementaryLink] = React.useState(""); // new field
   const [datetime, setDatetime] = React.useState<Date | null>(null);
   const [description, setDescription] = React.useState("");
   const [speakersText, setSpeakersText] = React.useState("");
@@ -35,7 +36,7 @@ const NewTalkModal = () => {
     const data = {
       title,
       watchUrl: link,
-      slidesUrl: slidesLink || null, // store null if empty
+      supplementaryUrl: supplementaryLink || null, // store null if empty
       startsAt: Timestamp.fromDate(datetime),
       description,
       speakers,
@@ -51,7 +52,7 @@ const NewTalkModal = () => {
       // reset fields
       setTitle("");
       setLink("");
-      setSlidesLink("");
+      setSupplementaryLink("");
       setDatetime(null);
       setDescription("");
       setSpeakersText("");
@@ -86,7 +87,7 @@ const NewTalkModal = () => {
           </label>
 
           <label className="input w-full">
-            <MdLink />
+            <BsYoutube />
             <input
               type="url"
               placeholder="YouTube link to the talk"
@@ -97,12 +98,12 @@ const NewTalkModal = () => {
           </label>
 
           <label className="input w-full">
-            <MdLink />
+            <FaBookmark />
             <input
               type="url"
-              placeholder="Link to slides (optional)"
-              value={slidesLink}
-              onChange={(e) => setSlidesLink(e.target.value)}
+              placeholder="Link to supplementary material"
+              value={supplementaryLink}
+              onChange={(e) => setSupplementaryLink(e.target.value)}
             />
           </label>
 
