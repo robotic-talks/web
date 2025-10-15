@@ -39,7 +39,7 @@ export default function Hero() {
             </div>
           ) : (
             <>
-              <h1 className="mb-5 text-5xl font-bold text-nowrap">
+              <h1 className="mb-5 text-3xl lg:text-5xl font-bold lg:text-nowrap">
                 Let's Talk Robotics!
               </h1>
               <p className="mb-5">A webinar series on robotics.</p>
