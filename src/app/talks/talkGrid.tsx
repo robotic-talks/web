@@ -1,7 +1,13 @@
 "use client";
 
 import { firestore } from "@/lib/firebase";
-import { collection, getDocs, DocumentData } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  DocumentData,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { useEffect, useState } from "react";
 import TalkCard from "./talkCard";
 
@@ -10,7 +16,9 @@ const TalkGrid = () => {
 
   useEffect(() => {
     try {
-      getDocs(collection(firestore, "talks")).then((querySnapshot) => {
+      getDocs(
+        query(collection(firestore, "talks"), orderBy("startsAt", "desc"))
+      ).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           console.log(doc.data());
           setTalks((talks) => [...talks, { id: doc.id, ...doc.data() }]);

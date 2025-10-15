@@ -4,7 +4,11 @@ export default function ThemeController() {
       <div className="lg:hidden">
         <label className="swap swap-rotate">
           {/* this hidden checkbox controls the state */}
-          <input type="checkbox" className="theme-controller" value="luxury" />
+          <input
+            type="checkbox"
+            className="theme-controller"
+            value="robotalk"
+          />
 
           {/* sun icon */}
           <svg
@@ -27,7 +31,11 @@ export default function ThemeController() {
       </div>
       <div className="hidden lg:block">
         <label className="toggle text-base-content">
-          <input type="checkbox" value="luxury" className="theme-controller" />
+          <input
+            type="checkbox"
+            value="robotalk"
+            className="theme-controller"
+          />
 
           <svg
             aria-label="sun"

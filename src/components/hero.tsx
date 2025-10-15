@@ -4,7 +4,7 @@ import { auth } from "@/lib/firebase";
 import GoogleLoginButton from "./googleLogin";
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
-import { BsCalendarEvent, BsSearch } from "react-icons/bs";
+import { BsArrowRight, BsCalendarEvent, BsSearch } from "react-icons/bs";
 import Link from "next/link";
 
 export default function Hero() {
@@ -44,8 +44,15 @@ export default function Hero() {
                 MOON Lab welcomes you to <b>Robotic Talks</b>. Ready to explore
                 the fascinating world of robotics with our team?
               </p>
-              <div className="flex-none">
+              <div className="flex-none flex flex-col gap-2">
                 <GoogleLoginButton />
+                <Link
+                  className="btn btn-outline backdrop-blur-2xl rounded lg:rounded-lg flex gap-3 items-center justify-center"
+                  href={"/talks"}
+                >
+                  <BsArrowRight size={24} />
+                  <span>Go to Talks</span>
+                </Link>
               </div>
             </>
           )}
