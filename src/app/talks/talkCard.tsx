@@ -2,16 +2,8 @@
 
 import Link from "next/link";
 import * as React from "react";
-import {
-  BsCalendar,
-  BsCalendarPlus,
-  BsClock,
-  BsPerson,
-  BsTextLeft,
-  BsYoutube,
-} from "react-icons/bs";
-import { MdSlideshow } from "react-icons/md";
-import { RiSlideshow2Fill } from "react-icons/ri";
+import { BsCalendar, BsPerson, BsTextLeft, BsYoutube } from "react-icons/bs";
+import { FaBookmark } from "react-icons/fa6";
 
 type TalkCardProps = {
   title: string;
@@ -19,7 +11,7 @@ type TalkCardProps = {
   speakers: string[];
   scheduledTime: Date;
   watchUrl: string;
-  slidesUrl: string;
+  supplementaryUrl: string;
 };
 
 const TalkCard = ({
@@ -28,7 +20,7 @@ const TalkCard = ({
   speakers,
   title,
   watchUrl,
-  slidesUrl,
+  supplementaryUrl,
 }: TalkCardProps) => {
   return (
     <div className="flex flex-col gap-2 rounded shadow-sm p-4 border-b-2 border-b-primary/30 h-full">
@@ -69,14 +61,16 @@ const TalkCard = ({
           className="btn join-item hover:bg-red-500 flex items-center gap-2"
         >
           <BsYoutube size={24} />
-          <div className="hidden lg:block">Watch</div>
+          <span className="hidden lg:block">Watch</span>
         </Link>
         <Link
-          href={slidesUrl}
-          className="btn join-item hover:btn-accent flex items-center gap-2"
+          href={supplementaryUrl || "/talks"}
+          className={`btn ${
+            supplementaryUrl === null && "btn-ghost"
+          } join-item hover:btn-accent flex items-center gap-2`}
         >
-          <RiSlideshow2Fill size={24} />{" "}
-          <div className="hidden lg:block">Slides</div>
+          <FaBookmark size={24} />{" "}
+          <span className="hidden lg:block">Supplementary</span>
         </Link>
       </div>
     </div>

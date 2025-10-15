@@ -37,9 +37,3 @@
 @plugin "daisyui" {
   themes: nord --default, robotalk;
 }
-
-@layer components {
-  [data-theme="dark"] .talk_card {
-    @apply border-2 border-primary;
-  }
-}
