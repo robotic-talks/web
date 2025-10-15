@@ -25,7 +25,7 @@ export default function Hero() {
         <div className="max-w-md flex flex-col items-center justify-center">
           {user ? (
             <div className="flex flex-col">
-              <h1 className="mb-5 text-5xl font-bold">
+              <h1 className="mb-5 text-3xl lg:text-5xl lg:text-nowrap font-bold">
                 Hi, {user.displayName?.split(" ")[0]}!
               </h1>
               <p className="mb-5">Ready for more robotics?</p>
