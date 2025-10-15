@@ -38,6 +38,7 @@ const TalkGrid = () => {
             speakers={talk.speakers}
             scheduledTime={talk.startsAt.toDate()}
             watchUrl={talk.watchUrl}
+            slidesUrl={talk.slidesUrl}
             description={talk.description}
           />
         </li>
