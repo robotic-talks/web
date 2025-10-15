@@ -39,8 +39,13 @@ const TalkCard = ({
         </i>
         <span>
           {new Intl.DateTimeFormat(navigator.language, {
-            dateStyle: "short",
-            timeStyle: "short",
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+            timeZoneName: "shortGeneric",
           }).format(scheduledTime)}
         </span>
       </div>

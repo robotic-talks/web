@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen min-h-screen overflow-x-hidden overflow-y-scroll font-sans`}
       >
-        <Navbar title="Robotics Talks" />
+        <Navbar title="Let's Talk Robotics" />
         {children}
 
         <div className="z-50">
